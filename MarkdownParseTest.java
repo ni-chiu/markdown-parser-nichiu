@@ -1,3 +1,4 @@
+
 import static org.junit.Assert.*;
 import org.junit.*;
 public class MarkdownParseTest {
@@ -5,5 +6,4 @@ public class MarkdownParseTest {
     public void addition() {
         assertEquals(2, 1 + 1);
     }
-
 }
