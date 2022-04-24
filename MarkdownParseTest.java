@@ -118,6 +118,7 @@ public class MarkdownParseTest {
         something.add("a link on the first line");
         assertEquals(something, links);        
     }   
+    /*
     if((markdown.substring(openBracket -1, openBracket).equals("!")))
             {
                 
@@ -129,7 +130,7 @@ public class MarkdownParseTest {
             else 
             {
                 toReturn.add(markdown.substring(openParen + 1, closeParen));
-            }   
+            }   */
 
 
     
