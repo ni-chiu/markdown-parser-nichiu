@@ -1,1 +1,3 @@
-![image](image.link)
+# Test File 3
+
+![image](image.png)
