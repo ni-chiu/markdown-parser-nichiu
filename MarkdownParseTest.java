@@ -117,21 +117,6 @@ public class MarkdownParseTest {
         ArrayList<String> something = new ArrayList<>();
         something.add("a link on the first line");
         assertEquals(something, links);        
-    }   
-    /*
-    if((markdown.substring(openBracket -1, openBracket).equals("!")))
-            {
-                
-            }
-            else if(!markdown.substring(closeBracket + 1, closeBracket+2).equals("("))
-            {
-                
-            }
-            else 
-            {
-                toReturn.add(markdown.substring(openParen + 1, closeParen));
-            }   */
-
-
+    }  
     
 }
