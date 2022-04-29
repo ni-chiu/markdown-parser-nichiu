@@ -11,34 +11,44 @@ public class MarkdownParse {
         ArrayList<String> toReturn = new ArrayList<>();
         // find the next [, then find the ], then find the (, then read link upto next )
         int currentIndex = 0;
+        int openBracket = 0;
         while(currentIndex < markdown.length()) {
-            int openBracket = markdown.indexOf("[", currentIndex);
+            //System.out.println(markdown.length());
+            openBracket = markdown.indexOf("[", currentIndex);
             int closeBracket = markdown.indexOf("]", openBracket);
             int openParen = markdown.indexOf("(", closeBracket);
             int closeParen = markdown.indexOf(")", openParen);
-            if (closeParen == -1 || openParen == -1 ){
-                break;
-            }
-            if (openBracket < 0) {
-                break;
-            }
-            if(!markdown.substring(openBracket-1, openBracket).equals("!")){
-                toReturn.add(markdown.substring(openParen + 1, closeParen));
-                currentIndex = closeParen + 1;
-            }
-            else{
-                break;
-            }
-        }
 
+            // Break if open or close parenthesis are not present
+            if (closeParen == -1 || openParen == -1 ){
+                System.out.println("Error in link formatting!");
+                break;
+            }
+
+            // Catches extra character after last parenthesis edge case
+            else if (openBracket < 0) {
+                break;
+            }
+
+            // Break if open or close brackets are not present
+            else if (openBracket == -1 || closeBracket == -1 ){
+                System.out.println("Error in link formatting!");
+                break;
+            }
+            
+            //System.out.println("Brackets: " + openBracket + ", " + closeBracket);
+            //System.out.println("Parens: " + openParen + ", " + closeParen);
+            //System.out.println("Current Index: " + currentIndex);
+            toReturn.add(markdown.substring(openParen + 1, closeParen));
+            currentIndex = closeParen + 1;
+        }
         return toReturn;
     }
-
 
     public static void main(String[] args) throws IOException {
         Path fileName = Path.of(args[0]);
         String content = Files.readString(fileName);
         ArrayList<String> links = getLinks(content);
 	    System.out.println(links);
-        }
+    }
 }
