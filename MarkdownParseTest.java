@@ -92,7 +92,7 @@ public class MarkdownParseTest {
         ArrayList<String> links = MarkdownParse.getLinks(content);
         ArrayList<String> something = new ArrayList<>();
 
-        assertEquals(1,1);        
+        assertEquals(something, links);        
     }  
     @Test
     public void getLinksTestfile6() throws IOException{
