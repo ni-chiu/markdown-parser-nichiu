@@ -26,7 +26,7 @@ public class MarkdownParseTest {
 
     @Test
     public void getLinksTest2() throws IOException{
-        Path fileName = Path.of("./test2.md");
+        Path fileName = Path.of("C:\\Users\\iWumb\\OneDrive\\Documents\\GitHub\\markdown-parser2\\test2.md");
         String content = Files.readString(fileName);
         ArrayList<String> links = MarkdownParse.getLinks(content);
         ArrayList<String> something = new ArrayList<>();
@@ -59,7 +59,7 @@ public class MarkdownParseTest {
     }
     @Test
     public void getLinksTestfile2() throws IOException{
-        Path fileName = Path.of("./test-file2.md");
+        Path fileName = Path.of("markdown-parser2\test-file2.md");
         String content = Files.readString(fileName);
         ArrayList<String> links = MarkdownParse.getLinks(content);
         ArrayList<String> something = new ArrayList<>();
@@ -121,5 +121,39 @@ public class MarkdownParseTest {
         // something.add("a link on the first line");
         // assertEquals(something, links);        
     }  
+
+    @Test
+    public void testSnippet1() throws IOException{
+        Path fileName = Path.of("C:\\Users\\iWumb\\OneDrive\\Documents\\GitHub\\markdown-parser2\\snippet1.md");
+        String fileContent = Files.readString(fileName);
+        ArrayList<String> mpLinks = MarkdownParse.getLinks(fileContent);
+        ArrayList<String> expectedLinks = new ArrayList<>();
+        expectedLinks.add("`google.com");
+        expectedLinks.add("google.com");
+        expectedLinks.add("ucsd.edu");
+        assertEquals(expectedLinks, mpLinks);   
+    }
+
+    @Test
+    public void testSnippet2() throws IOException{
+        Path fileName = Path.of("C:\\Users\\iWumb\\OneDrive\\Documents\\GitHub\\markdown-parser2\\snippet2.md");
+        String fileContent = Files.readString(fileName);
+        ArrayList<String> mpLinks = MarkdownParse.getLinks(fileContent);
+        ArrayList<String> expectedLinks = new ArrayList<>();
+        expectedLinks.add("a.com");
+        expectedLinks.add("a.com(())");
+        expectedLinks.add("example.com");
+        assertEquals(expectedLinks, mpLinks);   
+    }
+
+    @Test
+    public void testSnippet3() throws IOException{
+        Path fileName = Path.of("C:\\Users\\iWumb\\OneDrive\\Documents\\GitHub\\markdown-parser2\\snippet3.md");
+        String fileContent = Files.readString(fileName);
+        ArrayList<String> mpLinks = MarkdownParse.getLinks(fileContent);
+        ArrayList<String> expectedLinks = new ArrayList<>();
+        expectedLinks.add("https://sites.google.com/eng.ucsd.edu/cse-15l-spring-2022/schedule");
+        assertEquals(expectedLinks, mpLinks);   
+    }
     
 }
